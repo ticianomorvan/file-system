@@ -3,6 +3,10 @@
 !*/
 !Makefile
 
+# Development
+.cache/
+*.json
+
 # Prerequisites
 *.d
 

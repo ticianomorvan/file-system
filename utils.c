@@ -7,7 +7,7 @@
 #include "utils.h"
 
 char *
-get_current_dir_name ()
+get_current_dir_name (void)
 {
   char *current_dir_name = NULL;
   current_dir_name = (char *)malloc (CHAR_MAX * sizeof (char));
@@ -63,6 +63,26 @@ get_dir_entries (char *dir_name, int dir_length)
         }
     }
 
+  sort_dir_entries(entries, dir_length);
   closedir (cdir);
   return entries;
+}
+
+int compare_strings(const void *s1, const void *s2) {
+  int s1_length = strlen((const char *) s1);
+  int s2_length = strlen((const char *) s2);
+
+  return (s1_length > s2_length) - (s1_length < s2_length);
+}
+
+void sort_dir_entries (char **dir_entries, int dir_length) {
+  for (int i = 0; i < dir_length; ++i) {
+    for (int j = i + 1; j < dir_length; ++j) {
+      if (!compare_strings(dir_entries[i], dir_entries[j])) {
+        char *temp = dir_entries[i];
+        dir_entries[i] = dir_entries[j];
+        dir_entries[j] = temp;
+      }
+    }
+  }
 }

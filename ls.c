@@ -4,7 +4,7 @@
 #include "utils.h"
 
 void
-print_current_dir ()
+print_current_dir (void)
 {
   char *current_dir_name = get_current_dir_name ();
   int current_dir_length = get_dir_length (current_dir_name);

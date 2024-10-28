@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -pedantic -g
 SOURCES := $(wildcard *.c)
 OBJECTS = $(SOURCES:.c=.o)
-TARGET = myprog 
+TARGET = fs 
 FORMAT = clang-format
 
 .PHONY: clean
