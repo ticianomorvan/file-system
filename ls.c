@@ -1,6 +1,5 @@
 #include "ls.h"
 #include "dir.h"
-#include "print.h"
 #include "utils.h"
 #include <stdlib.h>
 
@@ -8,29 +7,17 @@ void
 print_current_dir (void)
 {
   char *current_dir_name = get_current_dir_name ();
-  int current_dir_length = get_dir_length (current_dir_name);
-  char **current_dir_entries
-      = get_dir_entries (current_dir_name, current_dir_length);
-
-  struct _print_dir_flags flags;
-  flags.sort = false;
-  flags.show_all = false;
-  print_dir (current_dir_entries, current_dir_length, flags);
+  dir current_dir = generate_dir_from_path(current_dir_name);
+  print_dir(current_dir);
 
   free (current_dir_name);
-  free_string_array (current_dir_entries, current_dir_length);
+  destroy_dir(current_dir);
 }
 
 void
-print_external_dir (char *dir_path)
+print_external_dir (char *path)
 {
-  int dir_length = get_dir_length (dir_path);
-  char **dir_entries = get_dir_entries (dir_path, dir_length);
-
-  struct _print_dir_flags flags;
-  flags.sort = true;
-  flags.show_all = false;
-  print_dir (dir_entries, dir_length, flags);
-
-  free_string_array (dir_entries, dir_length);
+  dir external_dir = generate_dir_from_path(path);
+  print_dir (external_dir);
+  destroy_dir(external_dir);
 }

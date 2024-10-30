@@ -1,21 +1,47 @@
 #ifndef _DIR_H
 #define _DIR_H
 
-char *get_current_dir_name(void);
+typedef struct _s_dir * dir;
+
+dir init_dir(void);
 /*
- * Returns current directory name.
- * Caller is responsible of freeing the resulting pointer.
+ * Initialize a new directory struct.
  */
 
-int get_dir_length(char *dir_name);
+char* get_dir_path(dir d);
 /*
- * Returns given directory length (amount of files and subdirectories).
+ * Gets a directory path.
+ * This returns a reference to the [path] field.
  */
 
-char **get_dir_entries(char *dir_name, int dir_length);
+dir set_dir_path(dir d, char *path);
 /*
- * Returns an array of given directory's entries names.
- * Caller is responsible of freeing the resulting pointer.
+ * Sets a directory path.
+ * This copies the string [path] instead of just referencing it.
  */
 
+dir add_dir_entry(dir d, char *entry);
+/*
+ * Adds an entry to a directory.
+ */
+
+int get_dir_length(dir d);
+/*
+ * Count hoy many entries does a directory have.
+ */
+
+void print_dir(dir d);
+/*
+ * Prints a directory structure.
+ */
+
+dir destroy_dir(dir d);
+/*
+ * Destroys a directory structure.
+ */
+
+dir generate_dir_from_path(char* path);
+/*
+ * Scans a given [path] and transforms it into a directory structure.
+ */
 #endif // !_DIR_H

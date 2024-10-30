@@ -21,4 +21,9 @@ char **free_string_array(char *array[], int length);
  * Correctly frees memory allocated by an array of strings.
  */
 
+char* get_current_dir_name(void);
+/*
+ * Retrieves current directory name.
+ */
+
 #endif

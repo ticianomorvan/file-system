@@ -6,7 +6,7 @@ void print_current_dir(void);
  * Prints current directory structure.
  */
 
-void print_external_dir(char *dir_path);
+void print_external_dir(char *path);
 /*
  * Prints external directory structure.
  */

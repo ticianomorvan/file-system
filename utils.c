@@ -1,5 +1,7 @@
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "utils.h"
 
 int
@@ -28,4 +30,14 @@ free_string_array (char *array[], int length)
   free (array);
   array = NULL;
   return array;
+}
+
+
+char *
+get_current_dir_name (void)
+{
+  char *current_dir_name = NULL;
+  current_dir_name = (char *)malloc (CHAR_MAX * sizeof (char));
+  getcwd (current_dir_name, CHAR_MAX);
+  return current_dir_name;
 }

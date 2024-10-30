@@ -14,9 +14,9 @@ main (int argc, char *argv[])
 
   if (argc == 2)
     {
-      char *dir_path = strdup (argv[argc - 1]);
-      print_external_dir (dir_path);
-      free (dir_path);
+      char *path = strdup (argv[argc - 1]);
+      print_external_dir(path);
+      free (path);
       exit (EXIT_SUCCESS);
     }
 
